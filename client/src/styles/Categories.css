@@ -1,0 +1,33 @@
+.categories-home-container {
+  margin-top: 1rem;
+}
+
+.categories-home-container h2 {
+  margin-left: 1rem;
+}
+
+.categories-list-container {
+  display: flex;
+  gap: 1.8rem;
+  overflow-x: auto;
+  margin-top: 2rem;
+  padding-left: 1.5rem;
+}
+
+.category-card {
+  background-color: var(--main-red-color);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--white-text-color);
+  flex-shrink: 0;
+}
+
+.category-image {
+  width: 35%;
+  margin-top: .5rem;
+}
