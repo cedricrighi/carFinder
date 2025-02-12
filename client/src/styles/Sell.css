@@ -1,0 +1,69 @@
+.sell-section-container {
+  background-color: #ededed;
+  border-radius: 1rem;
+  margin: .5rem;
+  padding: .5rem;
+}
+
+.sell-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sell-section-container form article {
+  display: flex;
+  width: fit-content;
+}
+
+.sell-form article {
+  display: flex;
+  gap: 1rem;
+}
+
+.sell-form div {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.sell-form label {
+  font-size: .8rem;
+}
+
+.sell-form input,
+.sell-form select {
+  padding: .3rem;
+  border-radius: .5rem;
+  border: 2px solid #b1b1b1;
+}
+
+.sell-button-submit {
+  align-self: flex-end;
+  margin-top: 1.2rem;
+  padding: .5rem 1rem;
+  background-color: var(--main-red-color);
+  color: var(--white-text-color);
+  border: none;
+  border-radius: .5rem;
+}
+
+#category {
+  width: 40%;
+}
+#brand {
+  width: 100%;
+}
+
+#brand-input {
+  width: 35%;
+}
+
+#year-input {
+  width: 25%;
+}
+
+#consumption {
+  width: 55%;
+}

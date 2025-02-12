@@ -1,0 +1,42 @@
+.latest-vehicles-added-container {
+  margin: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.latest-vehicles-added-article {
+  border: 2px solid #989898;
+  width: 90%;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  margin: 0 auto;
+  padding: .5rem;
+}
+
+.latest-vehicles-added-image {
+  width: 40%;
+  height: auto;
+  border-radius: .8rem;
+}
+
+.latest-vehicles-added-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.latest-vehicles-added-button {
+  background-color: var(--main-red-color);
+  color: var(--white-text-color);
+  border: none;
+  margin: 0 auto;
+  padding: .5rem 2rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
