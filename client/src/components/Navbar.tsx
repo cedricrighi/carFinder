@@ -21,10 +21,10 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <button className="button-menu-burger" type="button">
+      <Link to="/register" className="button-menu-burger" type="button">
         <p>S'inscrire/</p>
         <p>Se connecter</p>
-      </button>
+      </Link>
     </nav>
   );
 }

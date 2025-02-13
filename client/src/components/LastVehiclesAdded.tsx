@@ -45,10 +45,10 @@ export default function LastVehiclesAdded() {
             alt={`${vehicle.brand}${vehicle.model}`}
           />
           <div className="latest-vehicles-added-infos">
-            <h3>
+            <h3 className="latest-vehicles-added-title">
               {vehicle.year} {vehicle.brand} {vehicle.model}
             </h3>
-            <p>{vehicle.price} €</p>
+            <p className="latest-vehicles-added-price">{vehicle.price} €</p>
             <button className="latest-vehicles-added-button" type="button">
               Voir plus
             </button>

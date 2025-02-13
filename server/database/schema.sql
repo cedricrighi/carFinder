@@ -42,3 +42,6 @@ insert into user (username, first_name, last_name, email, password, birthday, ph
 
 insert into vehicle (image, brand, model, year, mileage, consumption, transmission, price, category_id, user_id) values ('/images/audi-q7.png', 'Audi', 'Q7', 2019, 10000, 7.5, "Automatique", 70000, 1, 1);
 insert into vehicle (image, brand, model, year, mileage, consumption, transmission, price, category_id, user_id) values ('/images/audi-r8.png', 'Audi', 'R8', 2020, 5000, 10, "Automatique", 150000, 2, 1);
+insert into vehicle (image, brand, model, year, mileage, consumption, transmission, price, category_id, user_id) values ('/images/maserati-ghibli.png', 'Maserati', 'Ghibli', 2018, 20000, 9, "Automatique", 80000, 3, 1);
+insert into vehicle (image, brand, model, year, mileage, consumption, transmission, price, category_id, user_id) values ('/images/mercedes-amg-one.png', 'Mercedes', 'AMG One', 2019, 15000, 8, "Automatique", 90000, 2, 1);
+insert into vehicle (image, brand, model, year, mileage, consumption, transmission, price, category_id, user_id) values ('/images/tesla-model-s.png', 'Tesla', 'Model S', 2020, 1000, 0, "Automatique", 100000, 6, 1);

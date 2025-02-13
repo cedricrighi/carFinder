@@ -19,8 +19,9 @@ export default function Sell() {
     );
     try {
       const category_id = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/category?name=${categoryRef.current?.value}`,
+        `${import.meta.env.VITE_API_URL}/api/category/${categoryRef.current?.value}`,
       );
+
       const category_idJSON = (await category_id.json())[0].id;
 
       formData.append("category_id", category_idJSON);

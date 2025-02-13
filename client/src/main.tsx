@@ -9,6 +9,7 @@ import Sell from "./pages/Sell";
 /* ************************************************************************* */
 
 import App from "./App";
+import Register from "./pages/Register";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -24,8 +25,8 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for all routes
     children: [
       {
-        path: "/", // The root path
-        element: <Home />, // Renders the App component for the home page
+        path: "/",
+        element: <Home />,
       },
       {
         path: "/buy",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/sell",
         element: <Sell />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
