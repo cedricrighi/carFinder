@@ -14,7 +14,7 @@ create table category (
 
 create table vehicle (
   id int primary key auto_increment,
-  image varchar(255) not null,
+  image varchar(255),
   brand varchar(255) not null,
   model varchar(255) not null,
   year int,

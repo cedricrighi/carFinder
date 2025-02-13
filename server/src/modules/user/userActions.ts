@@ -5,7 +5,7 @@ const browseByEmail: RequestHandler = async (req, res, next) => {
   const { email } = req.params;
 
   try {
-    const user = await userRepository.readByEmail(email);
+    const user = await userRepository.readEmailByEmail(email);
     res.status(200).json(user);
   } catch (error) {
     next(error);
@@ -13,8 +13,9 @@ const browseByEmail: RequestHandler = async (req, res, next) => {
 };
 
 const add: RequestHandler = async (req, res, next) => {
-  const { first_name, last_name, email, hashed_password, phone_number } =
+  const { image, first_name, last_name, email, hashed_password, phone_number } =
     req.body;
+
   const user = {
     first_name,
     last_name,

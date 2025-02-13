@@ -67,3 +67,19 @@
 #consumption {
   width: 55%;
 }
+
+.upload-file-img {
+  width: 40%;
+  align-self: center;
+}
+
+#dropzone {
+  border: 2px dashed #858585;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  p {
+    font-size: .8rem;
+    margin-top: 1.2rem;
+  }
+}

@@ -37,7 +37,7 @@ export default function LastVehiclesAdded() {
   return (
     <section className="latest-vehicles-added-container">
       <h2>Derniers véhicules ajoutés</h2>
-      {latestVehiclesList.map((vehicle) => (
+      {latestVehiclesList.slice(0, 3).map((vehicle) => (
         <article className="latest-vehicles-added-article" key={vehicle.id}>
           <img
             className="latest-vehicles-added-image"

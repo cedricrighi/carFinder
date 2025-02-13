@@ -21,6 +21,7 @@ class VehiclesRepository {
 
   readWithFilters = async (
     category_id: number | undefined,
+    brand: string | undefined,
     year: number | undefined,
     transmission: string | undefined,
   ) => {
@@ -30,6 +31,11 @@ class VehiclesRepository {
     if (category_id !== undefined && !Number.isNaN(category_id)) {
       query += " AND category_id = ?";
       params.push(category_id);
+    }
+
+    if (brand !== undefined) {
+      query += " AND brand = ?";
+      params.push(brand);
     }
 
     if (year !== undefined && !Number.isNaN(year)) {
@@ -53,15 +59,21 @@ class VehiclesRepository {
     return rows;
   };
 
+  readBrandsInDatabase = async () => {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select distinct brand from vehicle",
+    );
+    return rows;
+  };
+
   create = async (
-    vehicle: VehiclesProps,
+    vehicle: Omit<VehiclesProps, "image">,
     category_id: number,
     user_id: number,
   ) => {
     const [result] = await DatabaseClient.query<Result>(
-      "insert into vehicle (image, brand, model, year, mileage, consumption, price, category_id, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into vehicle (brand, model, year, mileage, consumption, price, category_id, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)",
       [
-        vehicle.image,
         vehicle.brand,
         vehicle.model,
         vehicle.year,
@@ -73,6 +85,14 @@ class VehiclesRepository {
       ],
     );
     return result.insertId;
+  };
+
+  updateImageVehicles = async (id: number, image: string) => {
+    const [result] = await DatabaseClient.query<Result>(
+      "update vehicle set image = ? where id = ?",
+      [image, id],
+    );
+    return result.affectedRows;
   };
 }
 

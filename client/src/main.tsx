@@ -9,6 +9,8 @@ import Sell from "./pages/Sell";
 /* ************************************************************************* */
 
 import App from "./App";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

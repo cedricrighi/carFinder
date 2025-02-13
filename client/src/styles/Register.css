@@ -69,3 +69,8 @@
   font-size: .8rem;
   margin-top: .5rem;
 }
+
+.register-account-already-in-db {
+  color: #6b6b6b;
+  font-size: .8rem;
+}

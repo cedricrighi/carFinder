@@ -17,9 +17,17 @@ class userRepository {
     return rows;
   };
 
-  readByEmail = async (email: string) => {
+  readEmailByEmail = async (email: string) => {
     const [rows] = await DatabaseClient.query<Rows>(
       "select email from user where email = ?",
+      [email],
+    );
+    return rows[0];
+  };
+
+  readByEmailWithPassword = async (email: string) => {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select * from user where email = ?",
       [email],
     );
     return rows[0];

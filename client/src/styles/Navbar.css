@@ -1,5 +1,5 @@
 .navbar-website-title {
-  color: #c30707;
+  color: var(--main-red-color);
   font-size: 1.5rem;
 }
 

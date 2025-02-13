@@ -163,8 +163,8 @@ export default function Register() {
             </p>
           )}
         </div>
-        <Link to={"/login"}>
-          <p>Vous avez déjà un compte ?</p>
+        <Link className="register-account-already-in-db" to={"/login"}>
+          Vous avez déjà un compte ?
         </Link>
         <button className="register-form-button" type="submit">
           S'inscrire
