@@ -11,6 +11,30 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseWithFilters: RequestHandler = async (req, res, next) => {
+  try {
+    const { category_id, year, transmission } = req.query;
+
+    const vehicles = await vehiclesRepository.readWithFilters(
+      Number.parseInt(category_id as string),
+      Number.parseInt(year as string),
+      transmission as string,
+    );
+    res.status(200).json(vehicles);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getYearsInDatabase: RequestHandler = async (req, res, next) => {
+  try {
+    const years = await vehiclesRepository.readYearsInDatabase();
+    res.status(200).json(years);
+  } catch (error) {
+    next(error);
+  }
+};
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -53,4 +77,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, add };
+export default { browse, add, getYearsInDatabase, browseWithFilters };
