@@ -1,4 +1,3 @@
-import Categories from "../components/Categories";
 import HomeImage from "../components/HomeImage";
 import LastVehiclesAdded from "../components/LastVehiclesAdded";
 import Navbar from "../components/Navbar";
@@ -9,7 +8,7 @@ export default function Home() {
     <>
       <Navbar />
       <HomeImage />
-      <Categories />
+      {/* <Categories /> */}
       <LastVehiclesAdded />
       <SignUpNewsInfos />
     </>

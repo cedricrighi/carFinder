@@ -1,3 +1,4 @@
+import { get } from "node:http";
 import type { RequestHandler } from "express";
 import categoryRepository from "./categoryRepository";
 
@@ -26,4 +27,20 @@ const getCatByName: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, getCatByName };
+const getCatById: RequestHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    if (typeof id !== "string") {
+      throw new Error("Invalid category id");
+    }
+
+    const category = await categoryRepository.readById(Number.parseInt(id));
+
+    res.status(200).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { browse, getCatByName, getCatById };

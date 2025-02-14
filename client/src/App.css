@@ -14,5 +14,9 @@ body {
 
 :root {
   --white-text-color: #fbfbfb;
-  --main-red-color: #c30707;
+  --main-red-color: #d40707;
+}
+
+button {
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import searchBarSVG from "/icons/icon-searchbar.svg";
+// import searchBarSVG from "/icons/icon-searchbar.svg";
 import homeCarsImage from "/images/cars-fiat500.png";
 import "../styles/HomeImage.css";
 
@@ -11,7 +11,7 @@ export default function HomeImage() {
           <h2>Trouvez la voiture de vos rêves.</h2>
           <h2>Comparez. Achetez.</h2>
         </article>
-        <article className="search-bar-home">
+        {/* <article className="search-bar-home">
           <form className="input-container" action="" method="get">
             <input
               className="input-search-bar-home"
@@ -23,7 +23,7 @@ export default function HomeImage() {
               <img src={searchBarSVG} alt="Search" />
             </button>
           </form>
-        </article>
+        </article> */}
       </div>
     </section>
   );

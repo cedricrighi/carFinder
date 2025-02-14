@@ -1,0 +1,76 @@
+.register-section-container {
+  margin: 1rem;
+  border: 1px solid #969696;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.back-to-home-link {
+  color: #6b6b6b;
+  font-size: .8rem;
+}
+
+.register-title {
+  font-size: 1.8rem;
+  color: var(--main-red-color);
+  text-align: center;
+  margin-top: .7rem;
+  margin-bottom: 1rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstname-and-lastname {
+  display: flex;
+  gap: 1rem;
+}
+
+.firstname-input-and-label {
+  display: flex;
+  width: 35%;
+}
+
+.lastname-input-and-label {
+  display: flex;
+  width: 40%;
+}
+
+.register-form input {
+  padding: .4rem;
+  border-radius: .5rem;
+  border: 1px solid #969696;
+}
+
+.register-form-button {
+  background-color: var(--main-red-color);
+  color: var(--white-text-color);
+  padding: .5rem;
+  border: none;
+  border-radius: .3rem;
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+
+#phone {
+  width: 60%;
+}
+
+.register-warning-text {
+  color: var(--main-red-color);
+  font-size: .8rem;
+  margin-top: .5rem;
+}
+
+.register-account-already-in-db {
+  color: #6b6b6b;
+  font-size: .8rem;
+}

@@ -1,0 +1,19 @@
+.profile-navbar-outlets {
+  background-color: #f5f5f5;
+  display: flex;
+  gap: 1rem;
+  margin-top: .7rem;
+  align-items: center;
+  padding: .8rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.active-outlet {
+  text-decoration: underline var(--main-red-color);
+  text-underline-offset: .5rem;
+}
+
+.button-profile-navbar-outlet {
+  background: transparent;
+  border: none;
+}

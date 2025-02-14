@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/Buy.css";
+import OneVehicleCard from "../components/OneVehicleCard";
 
 interface Category {
   id: number;
@@ -21,9 +22,11 @@ interface VehiclesProps {
 
 export default function Buy() {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [brands, setBrands] = useState<{ brand: string }[]>([]);
   const [years, setYears] = useState<{ year: number }[]>([]);
   const [vehicles, setVehicles] = useState<VehiclesProps[]>([]);
   const filterCategoryRef = useRef<HTMLSelectElement>(null);
+  const filterBrandRef = useRef<HTMLSelectElement>(null);
   const filterYearRef = useRef<HTMLSelectElement>(null);
   const filterTransmissionRef = useRef<HTMLSelectElement>(null);
 
@@ -36,6 +39,20 @@ export default function Buy() {
         throw new Error("Categories fetch failed");
       }
       setCategories(await response.json());
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  const fetchBrands = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/brands`,
+      );
+      if (!response.ok) {
+        throw new Error("Brands fetch failed");
+      }
+      setBrands(await response.json());
     } catch (error) {
       console.error(error);
     }
@@ -58,7 +75,7 @@ export default function Buy() {
   const fetchVehicles = useCallback(async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/vehicles/search?${filterCategoryRef.current?.value !== "default" ? `category_id=${filterCategoryRef.current?.value}` : ""}${filterYearRef.current?.value !== "default" ? `&year=${filterYearRef.current?.value}` : ""}${filterTransmissionRef.current?.value !== "default" ? `&transmission=${filterTransmissionRef.current?.value}` : ""}`,
+        `${import.meta.env.VITE_API_URL}/api/search-vehicles?${filterCategoryRef.current?.value !== "default" ? `category_id=${filterCategoryRef.current?.value}` : ""}${filterBrandRef.current?.value !== "default" ? `&brand=${filterBrandRef.current?.value}` : ""}${filterYearRef.current?.value !== "default" ? `&year=${filterYearRef.current?.value}` : ""}${filterTransmissionRef.current?.value !== "default" ? `&transmission=${filterTransmissionRef.current?.value}` : ""}`,
       );
       if (!response.ok) {
         throw new Error("Vehicles fetch failed");
@@ -73,7 +90,8 @@ export default function Buy() {
   useEffect(() => {
     fetchCategories();
     fetchYears();
-  }, [fetchCategories, fetchYears]);
+    fetchBrands();
+  }, [fetchCategories, fetchYears, fetchBrands]);
 
   useEffect(() => {
     fetchVehicles();
@@ -81,19 +99,22 @@ export default function Buy() {
 
   useEffect(() => {
     const handleFilterChange = () => {
-      fetchVehicles(); // Met à jour les véhicules sans recharger la page
+      fetchVehicles();
     };
 
     const categorySelect = filterCategoryRef.current;
+    const brandSelect = filterBrandRef.current;
     const yearSelect = filterYearRef.current;
     const transmissionSelect = filterTransmissionRef.current;
 
     categorySelect?.addEventListener("change", handleFilterChange);
+    brandSelect?.addEventListener("change", handleFilterChange);
     yearSelect?.addEventListener("change", handleFilterChange);
     transmissionSelect?.addEventListener("change", handleFilterChange);
 
     return () => {
       categorySelect?.removeEventListener("change", handleFilterChange);
+      brandSelect?.removeEventListener("change", handleFilterChange);
       yearSelect?.removeEventListener("change", handleFilterChange);
       transmissionSelect?.removeEventListener("change", handleFilterChange);
     };
@@ -114,6 +135,18 @@ export default function Buy() {
                     {category.name}
                   </option>
                 ))}
+              </select>
+            </div>
+            <div>
+              <select name="brand" id="brand-select-input" ref={filterBrandRef}>
+                <option value="default">Marque</option>
+                {brands
+                  .sort((a, b) => a.brand.localeCompare(b.brand))
+                  .map((brand) => (
+                    <option key={brand.brand} value={brand.brand}>
+                      {brand.brand}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
@@ -146,30 +179,7 @@ export default function Buy() {
         <section className="filter-vehicles-list">
           {vehicles.length > 0 ? (
             vehicles.map((vehicle) => (
-              <article
-                className="latest-vehicles-added-article"
-                key={vehicle.id}
-              >
-                <img
-                  className="latest-vehicles-added-image"
-                  src={vehicle.image}
-                  alt={`${vehicle.brand}${vehicle.model}`}
-                />
-                <div className="latest-vehicles-added-infos">
-                  <h3 className="latest-vehicles-added-title">
-                    {vehicle.year} {vehicle.brand} {vehicle.model}
-                  </h3>
-                  <p className="latest-vehicles-added-price">
-                    {vehicle.price} €
-                  </p>
-                  <button
-                    className="latest-vehicles-added-button"
-                    type="button"
-                  >
-                    Voir plus
-                  </button>
-                </div>
-              </article>
+              <OneVehicleCard key={vehicle.id} vehicle={vehicle} />
             ))
           ) : (
             <p className="empty-vehicle-filter-list">Aucun véhicule trouvé.</p>

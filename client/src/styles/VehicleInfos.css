@@ -1,0 +1,58 @@
+.vehicle-info-card-container {
+  padding: 1rem;
+}
+
+.prev-button-infos-card {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.prev-img-infos-card {
+  width: 20%;
+}
+
+.infos-vehicle-photos {
+  width: 50%;
+  border-radius: 1rem;
+}
+
+.infos-vehicle-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.infos-vehicle-price {
+  font-size: .9rem;
+  font-weight: 200;
+}
+
+.engine-infos {
+  background-color: #f3f3f3;
+  padding: .8rem 1rem;
+  border-radius: .5rem;
+  margin-top: 1rem;
+}
+
+.infos-vehicle-seller-card {
+  background-color: #f3f3f3;
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.seller-contact-buy {
+  width: 50%;
+  margin-top: 1rem;
+  background-color: var(--main-red-color);
+  color: var(--white-text-color);
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  align-self: center;
+}

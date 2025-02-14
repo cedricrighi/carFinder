@@ -1,12 +1,13 @@
-import DatabaseClient, { type Result } from "../../../database/client";
+import DatabaseClient, {
+  type Rows,
+  type Result,
+} from "../../../database/client";
 
 interface User {
-  username: string;
   first_name: string;
   last_name: string;
   email: string;
-  password: string;
-  birthday: string;
+  hashed_password: string;
   phone_number: string;
 }
 
@@ -16,28 +17,38 @@ class userRepository {
     return rows;
   };
 
+  readById = async (id: number) => {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select * from user where id = ?",
+      [id],
+    );
+
+    return rows;
+  };
+
+  readEmailByEmail = async (email: string) => {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select email from user where email = ?",
+      [email],
+    );
+    return rows[0];
+  };
+
+  readByEmailWithPassword = async (email: string) => {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select * from user where email = ?",
+      [email],
+    );
+    return rows[0];
+  };
+
   create = async (user: User) => {
-    const {
-      username,
-      first_name,
-      last_name,
-      email,
-      password,
-      birthday,
-      phone_number,
-    } = user;
+    const { first_name, last_name, email, hashed_password, phone_number } =
+      user;
 
     const [result] = await DatabaseClient.query<Result>(
-      "insert into user (username, first_name, last_name, email, password, birthday, phone_number) values (?, ?, ?, ?, ?, ?, ?)",
-      [
-        username,
-        first_name,
-        last_name,
-        email,
-        password,
-        birthday,
-        phone_number,
-      ],
+      "insert into user (first_name, last_name, email, password, phone_number) values (?, ?, ?, ?, ?)",
+      [first_name, last_name, email, hashed_password, phone_number],
     );
 
     return result.insertId;

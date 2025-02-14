@@ -1,0 +1,19 @@
+.profile-infos-container {
+  padding: 1rem;
+}
+.profile-infos-container article {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-logout {
+  background-color: var(--main-red-color);
+  color: var(--white-text-color);
+  border: none;
+  margin: 0 auto;
+  padding: .5rem 2rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  align-self: center;
+}

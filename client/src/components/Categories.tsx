@@ -5,6 +5,7 @@ import luxuryIcon from "/icons/icon-luxury.svg";
 import raceIcon from "/icons/icon-race.svg";
 import iconUtils from "/icons/icon-utils.svg";
 import "../styles/Categories.css";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   const categories = [
@@ -45,14 +46,16 @@ export default function Categories() {
       <h2>Catégories</h2>
       <div className="categories-list-container">
         {categories.map((category) => (
-          <article className="category-card" key={category.id}>
-            <img
-              className="category-image"
-              src={category.img}
-              alt={category.name}
-            />
-            <p>{category.name}</p>
-          </article>
+          <Link to={`/category/${category.id}`} key={category.id}>
+            <article className="category-card">
+              <img
+                className="category-image"
+                src={category.img}
+                alt={category.name}
+              />
+              <p>{category.name}</p>
+            </article>
+          </Link>
         ))}
       </div>
     </section>

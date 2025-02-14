@@ -6,6 +6,15 @@
   gap: 1rem;
 }
 
+@media screen and (width > 750px) {
+  .list-last-vehicles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
 .latest-vehicles-added-article {
   border: 2px solid #989898;
   width: 90%;
@@ -17,17 +26,27 @@
   padding: .5rem;
 }
 
+@media (width > 750px) {
+  .latest-vehicles-added-article {
+    width: 20rem;
+    margin: 0;
+  }
+}
+
 .latest-vehicles-added-image {
   width: 40%;
-  height: 40%;
+  height: auto;
   border-radius: .8rem;
 }
 
 .latest-vehicles-added-infos {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   flex: 1;
+}
+
+.link-to-fullcard-vehicle {
+  text-decoration: none;
 }
 
 .latest-vehicles-added-button {
