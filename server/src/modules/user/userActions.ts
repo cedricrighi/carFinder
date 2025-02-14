@@ -12,6 +12,18 @@ const browseByEmail: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseById: RequestHandler = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await userRepository.readById(Number.parseInt(id));
+
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   const { image, first_name, last_name, email, hashed_password, phone_number } =
     req.body;
@@ -32,4 +44,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseByEmail, add };
+export default { browseByEmail, browseById, add };

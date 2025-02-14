@@ -16,3 +16,7 @@ body {
   --white-text-color: #fbfbfb;
   --main-red-color: #d40707;
 }
+
+button {
+  cursor: pointer;
+}

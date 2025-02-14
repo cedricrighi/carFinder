@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/Sell.css";
 import { DndContext } from "@dnd-kit/core";
@@ -35,7 +35,7 @@ export default function Sell() {
       formData.append("price", priceRef.current?.value || "");
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/vehicle/${auth?.user.id}`,
+        `${import.meta.env.VITE_API_URL}/api/add-vehicle/${auth?.user.id}`,
         {
           method: "POST",
           headers: {
@@ -51,22 +51,21 @@ export default function Sell() {
 
       if (file) {
         imgFormData.append("photo", file);
-      }
+        const responseImage = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/vehicle/image?vehicle_id=${dataIdVehicle.id}`,
+          {
+            method: "PUT",
+            body: imgFormData,
+          },
+        );
 
-      const responseImage = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/vehicle/image?vehicle_id=${dataIdVehicle.id}`,
-        {
-          method: "PUT",
-          body: imgFormData,
-        },
-      );
-
-      if (response.ok && responseImage.ok) {
-        formRef.current?.reset();
-        setFile(null);
-        setMessage("");
-      } else {
-        throw new Error("Upload failed");
+        if (response.ok && responseImage.ok) {
+          formRef.current?.reset();
+          setFile(null);
+          setMessage("");
+        } else {
+          throw new Error("Upload failed");
+        }
       }
 
       if (!response.ok) {
@@ -80,9 +79,11 @@ export default function Sell() {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
-  if (!auth) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!auth) {
+      navigate("/login");
+    }
+  }, [auth, navigate]);
 
   return (
     <>

@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthenticationProvider";
 
 export default function Login() {
   const navigate = useNavigate();
   const { setAuth } = useAuth();
+  const [error, setError] = useState<string | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const email = emailRef.current?.value;
@@ -23,6 +24,10 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       },
     );
+    if (responseWithToken.status === 422) {
+      setError("Email ou mot de passe incorrect");
+      return;
+    }
 
     const dataWithToken = await responseWithToken.json();
 
@@ -60,6 +65,7 @@ export default function Login() {
             ref={passwordRef}
           />
         </div>
+        {error && <p className="register-warning-text">{error}</p>}
         <Link className="register-account-already-in-db" to={"/register"}>
           Vous n'êtes pas inscrit ?
         </Link>

@@ -12,6 +12,7 @@ import App from "./App";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import VehicleInfos from "./pages/VehicleInfos";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/vehicle/:vehicle_id",
+        element: <VehicleInfos />,
       },
     ],
   },

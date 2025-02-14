@@ -3,12 +3,6 @@ import type { Request, RequestHandler } from "express";
 import type { UploadedFile } from "express-fileupload";
 import vehiclesRepository from "./vehiclesRepository";
 
-interface CustomRequest extends Request {
-  files?: {
-    photo?: UploadedFile | UploadedFile[];
-  };
-}
-
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const vehicles = await vehiclesRepository.readAll();
@@ -22,11 +16,17 @@ const browseWithFilters: RequestHandler = async (req, res, next) => {
   try {
     const { category_id, brand, year, transmission } = req.query;
 
+    // Convertir les paramètres en gérant les cas undefined/vides
+    const parsedCategoryId = category_id
+      ? Number.parseInt(category_id as string)
+      : null;
+    const parsedYear = year ? Number.parseInt(year as string) : null;
+
     const vehicles = await vehiclesRepository.readWithFilters(
-      Number.parseInt(category_id as string),
-      brand as string,
-      Number.parseInt(year as string),
-      transmission as string,
+      parsedCategoryId,
+      (brand as string) || null,
+      parsedYear,
+      (transmission as string) || null,
     );
     res.status(200).json(vehicles);
   } catch (error) {
@@ -52,6 +52,39 @@ const getBrandsInDatabase: RequestHandler = async (req, res, next) => {
   }
 };
 
+const getLatest: RequestHandler = async (_, res, next) => {
+  try {
+    const vehicles = await vehiclesRepository.getLatestVehicles();
+    res.status(200).json(vehicles);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getByUser: RequestHandler = async (req, res, next) => {
+  try {
+    const { user_id } = req.params;
+
+    const vehicles = await vehiclesRepository.readVehiclesByUser(
+      Number.parseInt(user_id),
+    );
+
+    res.status(200).json(vehicles);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const vehicle = await vehiclesRepository.read(Number.parseInt(id));
+    res.status(200).json(vehicle);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const user_id = req.params.user_id;
@@ -66,6 +99,7 @@ const add: RequestHandler = async (req, res, next) => {
       price,
       category_id,
     } = req.body;
+
     const vehicle = {
       brand,
       model,
@@ -138,11 +172,25 @@ const editImage: RequestHandler = async (req, res, next) => {
   }
 };
 
+const deleteById: RequestHandler = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await vehiclesRepository.deleteById(Number.parseInt(id));
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   browse,
-  add,
   getYearsInDatabase,
   getBrandsInDatabase,
+  getByUser,
+  getLatest,
   browseWithFilters,
+  read,
+  add,
   editImage,
+  deleteById,
 };

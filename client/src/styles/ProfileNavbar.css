@@ -1,8 +1,8 @@
 .profile-navbar-outlets {
-  width: 100%;
   background-color: #f5f5f5;
   display: flex;
   gap: 1rem;
+  margin-top: .7rem;
   align-items: center;
   padding: .8rem;
   border-bottom: 1px solid #e0e0e0;

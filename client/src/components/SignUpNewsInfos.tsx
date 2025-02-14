@@ -3,7 +3,7 @@ import "../styles/SignUpNewsInfos.css";
 export default function SignUpNewsInfos() {
   return (
     <section className="signup-news-infos-container">
-      <p>Restez informés des dernières offres</p>
+      <p>Restez informé des dernières offres</p>
       <input
         className="signup-news-infos-input"
         type="mail"

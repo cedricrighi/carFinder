@@ -1,0 +1,186 @@
+.navbar-website-title {
+  color: var(--main-red-color);
+  font-size: 1.5rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .7rem;
+  margin-bottom: .5rem;
+}
+.navbar-with-gtr35 {
+  overflow-x: hidden;
+}
+
+.left-navbar {
+  display: flex;
+  gap: .7rem;
+  align-items: center;
+  justify-content: start;
+}
+
+ul {
+  all: unset;
+  list-style: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: .5rem;
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:visited {
+  color: black;
+}
+
+.button-menu-burger {
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+}
+
+.button-menu-burger p {
+  font-size: 0.7rem;
+  color: black;
+}
+
+.button-menu-vers-profil {
+  text-decoration: none;
+  color: black;
+}
+
+.div-for-gtr35 {
+  margin-top: 3rem;
+  border-bottom: 1px solid rgb(72, 72, 72);
+  position: relative;
+}
+
+.nissan-gtr-35 {
+  width: 4rem;
+  transform: scaleX(-1);
+  position: absolute;
+  bottom: 0;
+}
+
+.div-to-make-gtr35-smoking {
+  bottom: 0;
+  position: absolute;
+  animation: drive-GTR35 5s linear infinite;
+}
+
+@media screen and (width > 768px) {
+  .div-to-make-gtr35-smoking {
+    animation: drive-GTR35 11s linear infinite;
+  }
+}
+
+.cloud {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+$indices: 1, 3, 7, 9, 10, 15, 20;
+
+@each $i in $indices {
+  .cloud-for-gtr35-#{$i} {
+    width: .2rem;
+    bottom: .3rem;
+    height: auto;
+    position: absolute;
+    animation: cloud 1s linear infinite #{.1s * $i};
+  }
+}
+
+$indices2: 2, 4, 6, 11, 14, 19;
+
+@each $i in $indices2 {
+  .cloud-for-gtr35-#{$i} {
+    width: .2rem;
+    bottom: .3rem;
+    height: auto;
+    position: absolute;
+    animation: cloud2 1s linear infinite #{.1s * $i};
+  }
+}
+
+$indices3: 5, 8, 12, 13, 16, 17, 18;
+
+@each $i in $indices3 {
+  .cloud-for-gtr35-#{$i} {
+    width: .2rem;
+    bottom: .3rem;
+    height: auto;
+    position: absolute;
+    animation: cloud3 1s linear infinite #{.1s * $i};
+  }
+}
+
+@keyframes drive-GTR35 {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes cloud {
+  10% {
+    right: 0rem;
+    bottom: .3rem;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    right: 3rem;
+    bottom: 2rem;
+    scale: 6;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud2 {
+  10% {
+    right: 0rem;
+    bottom: .3rem;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    right: 2rem;
+    bottom: 2.2rem;
+    scale: 6;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud3 {
+  10% {
+    right: 0rem;
+    bottom: .3rem;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    right: 3rem;
+    bottom: 2rem;
+    scale: 2;
+    opacity: 0;
+  }
+}

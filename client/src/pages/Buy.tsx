@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/Buy.css";
+import OneVehicleCard from "../components/OneVehicleCard";
 
 interface Category {
   id: number;
@@ -74,7 +75,7 @@ export default function Buy() {
   const fetchVehicles = useCallback(async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/vehicles/search?${filterCategoryRef.current?.value !== "default" ? `category_id=${filterCategoryRef.current?.value}` : ""}${filterBrandRef.current?.value !== "default" ? `&brand=${filterBrandRef.current?.value}` : ""}${filterYearRef.current?.value !== "default" ? `&year=${filterYearRef.current?.value}` : ""}${filterTransmissionRef.current?.value !== "default" ? `&transmission=${filterTransmissionRef.current?.value}` : ""}`,
+        `${import.meta.env.VITE_API_URL}/api/search-vehicles?${filterCategoryRef.current?.value !== "default" ? `category_id=${filterCategoryRef.current?.value}` : ""}${filterBrandRef.current?.value !== "default" ? `&brand=${filterBrandRef.current?.value}` : ""}${filterYearRef.current?.value !== "default" ? `&year=${filterYearRef.current?.value}` : ""}${filterTransmissionRef.current?.value !== "default" ? `&transmission=${filterTransmissionRef.current?.value}` : ""}`,
       );
       if (!response.ok) {
         throw new Error("Vehicles fetch failed");
@@ -178,30 +179,7 @@ export default function Buy() {
         <section className="filter-vehicles-list">
           {vehicles.length > 0 ? (
             vehicles.map((vehicle) => (
-              <article
-                className="latest-vehicles-added-article"
-                key={vehicle.id}
-              >
-                <img
-                  className="latest-vehicles-added-image"
-                  src={vehicle.image}
-                  alt={`${vehicle.brand}${vehicle.model}`}
-                />
-                <div className="latest-vehicles-added-infos">
-                  <h3 className="latest-vehicles-added-title">
-                    {vehicle.year} {vehicle.brand} {vehicle.model}
-                  </h3>
-                  <p className="latest-vehicles-added-price">
-                    {vehicle.price} €
-                  </p>
-                  <button
-                    className="latest-vehicles-added-button"
-                    type="button"
-                  >
-                    Voir plus
-                  </button>
-                </div>
-              </article>
+              <OneVehicleCard key={vehicle.id} vehicle={vehicle} />
             ))
           ) : (
             <p className="empty-vehicle-filter-list">Aucun véhicule trouvé.</p>

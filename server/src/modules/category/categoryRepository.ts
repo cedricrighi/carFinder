@@ -14,6 +14,14 @@ class categoryRepository {
     );
     return rows;
   }
+
+  async readById(id: number) {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "select name from category where id = ?",
+      [id],
+    );
+    return rows;
+  }
 }
 
 export default new categoryRepository();
